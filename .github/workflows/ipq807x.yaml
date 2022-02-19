@@ -17,16 +17,32 @@ jobs:
 
             - name: Generate config for IPQ807x Generic
               run: |
-                echo "CONFIG_TARGET_ipq807x=y" > .config
-                echo "CONFIG_TARGET_ipq807x_generic=y\n" >> .config
-                echo "CONFIG_TARGET_MULTI_PROFILE=y\n" >> .config
-                echo "CONFIG_TARGET_ALL_PROFILES=y\n" >> .config
-                echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y\n" >> .config
-                echo "CONFIG_TARGET_ROOTFS_INITRAMFS=y\n" >> .config
-                echo "CONFIG_TARGET_INITRAMFS_COMPRESSION_ZSTD=y\n" >> .config
-                echo "CONFIG_PACKAGE_luci=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-qca-nss-dp=y\n" >> .config
-                echo "CONFIG_PACKAGE_qca-ssdk-shell=y\n" >> .config
+                echo CONFIG_TARGET_ipq807x=y > .config
+                echo CONFIG_TARGET_ipq807x_generic=y >> .config
+                echo CONFIG_TARGET_MULTI_PROFILE=y >> .config
+                echo CONFIG_TARGET_ALL_PROFILES=y >> .config
+                echo CONFIG_TARGET_PER_DEVICE_ROOTFS=y >> .config
+                echo CONFIG_TARGET_ROOTFS_INITRAMFS=y >> .config
+                echo CONFIG_TARGET_INITRAMFS_COMPRESSION_ZSTD=y >> .config
+                echo CONFIG_PACKAGE_luci=y >> .config
+                echo CONFIG_PACKAGE_kmod-qca-nss-dp=y >> .config
+                echo CONFIG_PACKAGE_qca-ssdk-shell=y >> .config
+                echo CONFIG_TARGET_ipq807x_generic_DEVICE_xiaomi_ax3600=y >> .config
+                echo CONFIG_HAS_SUBTARGETS=y >> .config
+                echo CONFIG_TARGET_BOARD="ipq807x" >> .config
+                echo CONFIG_TARGET_SUBTARGET="generic" >> .config
+                echo CONFIG_TARGET_PROFILE="DEVICE_xiaomi_ax3600" >> .config
+                echo CONFIG_TARGET_ARCH_PACKAGES="aarch64_cortex-a53" >> .config
+                echo CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a53" >> .config
+                echo CONFIG_TARGET_ROOTFS_SQUASHFS=y >> .config
+                echo CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256 >> .config
+                echo CONFIG_TARGET_UBIFS_FREE_SPACE_FIXUP=y >> .config
+                echo CONFIG_TARGET_OPTIMIZATION="-Os -pipe -mcpu=cortex-a53" >> .config
+                echo CONFIG_TARGET_SUFFIX="musl" >> .config
+                echo CONFIG_PACKAGE_nss-firmware-ipq8074=y >> .config
+                echo CONFIG_PACKAGE_kmod-qca-nss-dp=y >> .config
+                echo CONFIG_PACKAGE_luci-theme-material=y >> .config
+
                 make defconfig
 
             - name: Download package sources
